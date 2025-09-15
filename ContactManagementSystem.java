@@ -28,8 +28,9 @@ class ContactManagementSystem {
             System.out.println("1. Add Contact");
             System.out.println("2. View Contact");
             System.out.println("3. Search Contact");
-            System.out.println("4. Delete Contact");
-            System.out.println("5. Exit");
+            System.out.println("4. Edit Contact");
+            System.out.println("5. Delete Contact");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             sc.nextLine();
@@ -44,13 +45,17 @@ class ContactManagementSystem {
                 case 3:
                     searchContact();
                     break;
-                case 4:
-                    deleteContact();
+                 case 4:
+                    editContact();
                     break;
                 case 5:
+                    deleteContact();
+                    break;
+                case 6:
                     System.out.println("-----Exiting-----");
                     break;
-                default:
+            
+                 default:
                     System.out.println("Invalid choice! Please enter a valid option.");
             }
         } while (choice != 5);
@@ -104,5 +109,22 @@ class ContactManagementSystem {
         } else {
             System.out.println("Contact Not Found!");
         }
+    }
+    private static void editContact() {
+        System.out.print("Enter name to edit: ");
+        String editName = sc.nextLine();
+        for (Contact c : contacts) {
+            if (c.name.equalsIgnoreCase(editName)) {
+                System.out.print("Enter new name: ");
+                c.name = sc.nextLine();
+                System.out.print("Enter new phone number: ");
+                c.phone_number = sc.nextLine();
+                System.out.print("Enter new email: ");
+                c.email = sc.nextLine();
+                System.out.println("Contact was updated successfully.");
+                return;
+            }
+        }
+        System.out.println("Contact Not Found!");
     }
 }
